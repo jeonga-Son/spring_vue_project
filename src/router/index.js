@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from '../pages/index.vue';
 import BestList from '../pages/products/bestList/index.vue';
+import ProductList from '../pages/products/list/index.vue';
 // import ProductDetail from '../pages/products/detail/_id.vue';
 
 const router = createRouter({
@@ -15,6 +16,11 @@ const router = createRouter({
             path: '/products/bestList',
             name: 'BestList',
             component: BestList
+        },
+        {
+            path: '/products/list',
+            name: 'ProductList',
+            component: ProductList
         }
         // },
         // {
