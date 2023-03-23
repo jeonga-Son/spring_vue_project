@@ -23,7 +23,7 @@
           <ul class="row">
             <div :value="product.p_id" :key="product.p_id" v-for="product in products">
                 <li class="cell" >
-                    <a href="/products/detail/${product.p_id}"><div class="img-box"><span><img v-bind:src="product.img_url" style="width:250px; height:350px; margin:10px"/></span></div></a>
+                    <a href="/products/${product.p_id}"><div class="img-box"><span><img v-bind:src="product.img_url" style="width:250px; height:350px; margin:10px"/></span></div></a>
                     <div style="color:gray" class="title">{{product.delivery_type}}</div>
                     <div class="price"><span>{{product.brand}}</span></div>
                     <div class="price"><span>{{product.name}}</span></div>

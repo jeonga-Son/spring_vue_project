@@ -24,14 +24,14 @@
 								<div class="num">
 									<span>수량 </span>
 									<span class="count">
-										<a href="#" class="minus"> - </a>
-										<span id="result"> 1 </span>
-										<a href="#" class="plus"> + </a>
+										<a v-on:click="count--" href="#" class="minus"> - </a>
+										<span id="result"> {{count}} </span>
+										<a v-on:click="count++" href="#" class="plus"> + </a>
 									</span>
 								</div>
 							</h3>
           </div>
-          <div class="all-price">총 상품금액 <span> 0 </span>원</div>
+          <div class="all-price">총 상품금액 <span> {{productDetail.price * count}} </span>원</div>
           <div class="btn">
             <a href="">장바구니</a>
             <a href="">구매하기</a>
@@ -42,7 +42,8 @@
       <div class="viewBody">
         <ul class="contentNav">
           <li class="active"><a href="">상품 정보</a></li>
-          <li><a href="">상품 후기<span>(<span class="count">20</span>)</span></a></li>
+          <!-- <li><a href="">상품 후기<span>(<span class="count">20</span>)</span></a></li> -->
+          <li><router-link to="/products/reviews">상품 후기<span>(<span class="count">20</span>)</span></router-link></li>
           <li><a href="">Q & A <span></span></a></li>
           <li><a href="">반품 / 교환</a></li>
         </ul>
@@ -152,6 +153,8 @@ import { ref } from 'vue'
 export default{ 
     setup() {
         const product = ref('');
+        const count = ref(1);
+
         const productDetail = ref({
             p_id: 1, 
             brand: '홍대주꾸미', 
@@ -166,6 +169,7 @@ export default{
         return {
             product,
             productDetail,
+            count,
         }
     }
 }
