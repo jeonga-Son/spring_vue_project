@@ -25,7 +25,7 @@
                                  <tbody :value="review.r_id" :key="review.r_id" v-for="review in reviews">
                                     <td>{{review.r_id}}</td>
                                     <td>{{review.m_id}}</td>
-                                    <td>{{review.contents}}</td>
+                                    <td><router-link :to="{path:'/products/review/'+review.r_id}">{{review.contents}}</router-link></td>
                                     <td>{{review.review_date}}</td>
                                 </tbody>
                             </table>
