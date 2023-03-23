@@ -6,8 +6,8 @@
       <div class="container">
         <nav aria-label="Breadcrumb">
           <ul class="breadcrumb p-0 mb-0 bg-transparent">
-            <li class="breadcrumb-item"><a href="/">홈</a></li>
-            <li class="breadcrumb-item"><a href="/product/productList">상품</a></li>
+            <li class="breadcrumb-item"><router-link :to="'/'">홈</router-link></li>
+            <li class="breadcrumb-item"><router-link :to="'/products/'+productDetail.p_id">상품</router-link></li>
             <li class="breadcrumb-item active">리뷰</li>
           </ul>
         </nav>
@@ -20,16 +20,15 @@
 		              <div class="post-content">
 		                <blockquote class="quote">
 			           	 <ul>
-			           	 	 <li><c:out value="브랜드 : ${product.brand}" /></li>   
-				           	 <li><c:out value="상품명 : ${product.name}" /></li>
-				           	 <li><c:out value="배송타입 : ${product.delivery_type}배송" /></li>
-				      	     <li><c:out value="작성일 : ${product.reviewList[0].review_date}" /></li>
+			           	 	 <li>✔︎ 브랜드 : {{productDetail.brand}}</li>   
+				           	 <li>✔︎ 상품명 : {{productDetail.name}}</li>
+				           	 <li>✔︎ 배송타입 : {{productDetail.delivery_type}}</li>
+				      	     <li>✔︎ 작성일 : {{review.review_date}}</li>
 			           	 </ul>
 		                <span class="author"></span>
 		                </blockquote>
-		                <!-- <img alt="" style="margin:20px" src="<c:out value="${product.img_url}" />"> -->
-		                <p><c:out value="${product.reviewList[0].contents} 또 먹고싶은 맛이에요. 해장으로 딱이고, 매운거 좋아하는 사람한테 딱입니다.
-		                	원래 댓글같은거 잘 안남기는데 이번에는 가격도 착하고, 맛도 너무 있어서 처음으로 리뷰 남겨요^^" /></p>
+		                <img alt="" style="margin:20px" v-bind:src="productDetail.img_url">
+		                <p>{{review.contents}}</p>
 		              </div>
 	              </c:forEach>
             </div>
@@ -215,8 +214,37 @@
 </template>
 
 <script>
-export default {
+import { ref } from 'vue'
 
+export default{ 
+    setup() {
+        const product = ref('');
+        
+        const review = ref({
+            p_id: 1 ,
+            m_id: 1 , 
+            r_id: 1 , 
+            contents:'또 먹고싶은 맛이에요. 해장으로 딱이고, 매운거 좋아하는 사람한테 딱입니다.원래 댓글같은거 잘 안남기는데 이번에는 가격도 착하고, 맛도 너무 있어서 처음으로 리뷰 남겨요^^' , 
+            review_date: '2023-03-23'
+        });
+
+        const productDetail = ref({
+            p_id: 1, 
+            brand: '홍대주꾸미', 
+            price: 6600, 
+            name: '주꾸미 볶음', 
+            stock: 2300, 
+            delivery_type: '깜깜배송', 
+            sales_amount: 1500, 
+            img_url: 'https://img-cf.kurly.com/cdn-cgi/image/quality=85,width=400/shop/data/goods/1653034699910l0.jpeg'
+        });
+
+        return {
+            product,
+            productDetail,
+            review,
+        }
+    }
 }
 </script>
 
